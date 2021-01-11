@@ -3,6 +3,7 @@ import { Form, TextArea, Button } from "semantic-ui-react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { CopyToClipboard } from "react-copy-to-clipboard";
+import History from "../components/src/History";
 import AppLayout from "../components/src/AppLayout";
 import { TRANSLATE_SIMPLE_REQUEST } from "../reducers/translate";
 
@@ -74,6 +75,14 @@ const Main = memo(() => {
   }, [translateSimplesuccess]);
 
   const onClickCopy = useCallback(() => {}, []);
+
+  const onItemClick = useCallback(
+    (Input, Output) => () => {
+      setTextOut(Output);
+      setText(Input);
+    },
+    [],
+  );
 
   const onClickRedo = useCallback(() => {
     setText("");
@@ -151,6 +160,8 @@ const Main = memo(() => {
 
         <ListContainer>
           <div> 검색내역</div>
+          {/* <Divider /> */}
+          <History onItemClick={onItemClick} style={{ overflow: "scroll" }} />
         </ListContainer>
       </div>
     </AppLayout>

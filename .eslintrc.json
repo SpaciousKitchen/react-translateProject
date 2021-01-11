@@ -26,6 +26,7 @@
         "react/prop-types":"off",
         "import/no-unresolved":"off",
         "import/extensions":"off"
+        
 
     }
 }

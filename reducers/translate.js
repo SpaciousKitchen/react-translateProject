@@ -6,7 +6,7 @@ export const init = {
   translateTemplaterequest: false,
   translateTemplatesuccess: false,
   translateTemplatefailure: false,
-  simple: [],
+  simple: [{ Output: "릴릴", Input: "input", id: "1" }],
   template: {
     Pay: null,
     Promotion: null,
@@ -23,6 +23,10 @@ export const TRANSLATE_SIMPLE_FAILURE = "TRANSLATE_SIMPLE_FAILURE";
 export const TRANSLATE_TEMPLATE_REQUEST = "TRANSLATE_TEMPLATE_REQUEST";
 export const TRANSLATE_TEMPLATE_SUCCESS = "TRANSLATE_TEMPLATE_SUCCESS";
 export const TRANSLATE_TEMPLATE_FAILURE = "TRANSLATE_TEMPLATE_FAILURE";
+
+export const REMOVE_SIMPLE_REQUEST = "REMOVE_SIMPLE_REQUEST";
+export const REMOVE_SIMPLE_SUCCESS = "REMOVE_SIMPLE_SUCCESS";
+export const REMOVE_SIMPLE_FAILURE = "REMOVE_SIMPLE_FAILURE";
 
 export default (state = init, action) => {
   switch (action.type) {
@@ -81,6 +85,15 @@ export default (state = init, action) => {
         translateTemplaterequest: false,
         translateTemplatesuccess: false,
         translateTemplatefailure: true,
+      };
+    }
+    case REMOVE_SIMPLE_REQUEST: {
+      console.log("remove");
+
+      state.simple.shift((v) => v.id !== action.id);
+
+      return {
+        ...state,
       };
     }
 
