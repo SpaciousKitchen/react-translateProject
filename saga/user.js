@@ -17,15 +17,12 @@ function* login(action) {
   // const result = yield call(loginAPI, action.data);
   console.log(action.data);
   try {
-    console.log("done");
-
     yield put({
       type: LOGIN_SUCCESS,
       // data: result.data.googleId,
       data: "ddd",
     });
   } catch (error) {
-    console.log("fails");
     yield put({
       type: LOGIN_FAILURE,
       error: error.response.data,

@@ -1,11 +1,15 @@
 import React, { useState, useEffect, useCallback, memo } from "react";
 import Router from "next/router";
-
+import { useSelector } from "react-redux";
 import propTypes from "prop-types";
 import { Menu } from "semantic-ui-react";
 
+import Login from "./Login";
+import Logout from "./Logout";
+
 const AppLayout = memo(({ children }) => {
   const [activeItem, setActiveItem] = useState();
+  const { user } = useSelector((state) => state.user);
 
   const handleItemClick = useCallback(
     (e, { name }) => {
@@ -36,6 +40,10 @@ const AppLayout = memo(({ children }) => {
           active={activeItem === "업무 템플릿"}
           onClick={handleItemClick}
         />
+
+        <Menu.Menu position="right" style={{ padding: "10px" }}>
+          {user == null ? <Login /> : <Logout />}
+        </Menu.Menu>
       </Menu>
       {children}
     </div>
