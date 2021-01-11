@@ -2,21 +2,26 @@ import React, { useState, useEffect, useCallback, memo } from "react";
 import Router from "next/router";
 import { useSelector } from "react-redux";
 import propTypes from "prop-types";
-import { Menu } from "semantic-ui-react";
+import { Menu, Message } from "semantic-ui-react";
 
+import styled from "styled-components";
 import Login from "./Login";
 import Logout from "./Logout";
 
+const ContainMessage = styled.div`
+  padding: 20px;
+  display: flex;
+  flex: 0.5;
+  height: 500px;
+  border-radius: 0.28571429rem;
+  flex-direction: column;
+`;
+
 const AppLayout = memo(({ children }) => {
   const [activeItem, setActiveItem] = useState();
-  const { user } = useSelector((state) => state.user);
+  const [visible, setvisible] = useState(false);
+  const { user, sendEmailsuccess } = useSelector((state) => state.user);
 
-  const handleItemClick = useCallback(
-    (e, { name }) => {
-      setActiveItem(name);
-    },
-    [activeItem],
-  );
   useEffect(() => {
     if (activeItem === "존댓말 변환") {
       // console.log("존맷말로 변환할게요");
@@ -26,6 +31,24 @@ const AppLayout = memo(({ children }) => {
       Router.push("/template");
     }
   }, [activeItem]);
+
+  useEffect(() => {
+    if (sendEmailsuccess) {
+      setvisible(true);
+    }
+  }, [sendEmailsuccess]);
+
+  const handleItemClick = useCallback(
+    (e, { name }) => {
+      setActiveItem(name);
+    },
+    [activeItem],
+  );
+
+  const handleDismiss = () => {
+    setvisible(false);
+    console.log(visible);
+  };
 
   return (
     <div>
@@ -46,6 +69,18 @@ const AppLayout = memo(({ children }) => {
         </Menu.Menu>
       </Menu>
       {children}
+      {visible === true ? (
+        <ContainMessage>
+          <Message
+            style={{ zIndex: 1000, width: "40%", margin: "auto" }}
+            onDismiss={handleDismiss}
+            icon="inbox"
+            header="메일 전송을 완료 하였습니다"
+          />
+        </ContainMessage>
+      ) : (
+        <></>
+      )}
     </div>
   );
 });
