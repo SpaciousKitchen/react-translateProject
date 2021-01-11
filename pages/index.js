@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import History from "../components/src/History";
 import AppLayout from "../components/src/AppLayout";
+
 import { TRANSLATE_SIMPLE_REQUEST } from "../reducers/translate";
 
 const SimpleCol = styled.div`
@@ -54,6 +55,12 @@ const Main = memo(() => {
   const [textOut, setTextOut] = useState("");
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    if (translateSimplesuccess) {
+      setTextOut(simple[0].Output);
+    }
+  }, [translateSimplesuccess]);
+
   const onSubmit = useCallback(() => {
     if (text.trim("") === "") {
       alert("내용을 입력하세요");
@@ -67,12 +74,6 @@ const Main = memo(() => {
     },
     [text],
   );
-
-  useEffect(() => {
-    if (translateSimplesuccess) {
-      setTextOut(simple[0].Output);
-    }
-  }, [translateSimplesuccess]);
 
   const onClickCopy = useCallback(() => {}, []);
 
