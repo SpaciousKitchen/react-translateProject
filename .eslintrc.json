@@ -25,7 +25,9 @@
         "react/no-typos":"off",
         "react/prop-types":"off",
         "import/no-unresolved":"off",
-        "import/extensions":"off"
+        "import/extensions":"off",
+        "eslintno-unused-vars":"off",
+        "import/no-named-as-default": 0
         
 
     }

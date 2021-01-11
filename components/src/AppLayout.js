@@ -14,7 +14,6 @@ const AppLayout = memo(({ children }) => {
     [activeItem],
   );
   useEffect(() => {
-    console.log("use", activeItem);
     if (activeItem === "존댓말 변환") {
       // console.log("존맷말로 변환할게요");
       Router.push("/");
