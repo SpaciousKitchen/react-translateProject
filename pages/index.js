@@ -1,8 +1,10 @@
-import React, { useState, useCallback, memo } from "react";
+import React, { useState, useCallback, memo, useEffect } from "react";
 import { Form, TextArea, Button } from "semantic-ui-react";
 import styled from "styled-components";
+import { useSelector, useDispatch } from "react-redux";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import AppLayout from "../components/src/AppLayout";
+import { TRANSLATE_SIMPLE_REQUEST } from "../reducers/translate";
 
 const SimpleCol = styled.div`
   width: 100%;
@@ -44,21 +46,32 @@ const ListContainer = styled.div`
 `;
 
 const Main = memo(() => {
+  const { translateSimplesuccess, simple } = useSelector(
+    (state) => state.translate,
+  );
   const [text, setText] = useState("");
   const [textOut, setTextOut] = useState("");
+  const dispatch = useDispatch();
 
   const onSubmit = useCallback(() => {
     if (text.trim("") === "") {
       alert("내용을 입력하세요");
+      return;
     }
+    dispatch({ type: TRANSLATE_SIMPLE_REQUEST, data: { content: text } });
   }, [text]);
   const onChangeText = useCallback(
     (e) => {
       setText(e.target.value);
-      setTextOut();
     },
     [text],
   );
+
+  useEffect(() => {
+    if (translateSimplesuccess) {
+      setTextOut(simple[0].Output);
+    }
+  }, [translateSimplesuccess]);
 
   const onClickCopy = useCallback(() => {}, []);
 
