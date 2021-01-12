@@ -4,6 +4,7 @@ import userSaga from "./user";
 import translateSaga from "./translate";
 
 axios.defaults.withCredentials = true;
+axios.defaults.baseURL = process.env.BASE_API_URL;
 
 export function* rootSaga() {
   yield all([fork(userSaga), fork(translateSaga)]);

@@ -238,6 +238,7 @@ const Template = () => {
                 padding: ".78571429em 1em",
                 borderRadius: ".28571429rem",
                 overflow: "auto",
+                whiteSpace: "pre",
               }}
             >
               {textOut}

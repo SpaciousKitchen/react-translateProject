@@ -1,5 +1,5 @@
-import { all, takeLatest, fork, put } from "redux-saga/effects";
-
+import { all, takeLatest, fork, put, call } from "redux-saga/effects";
+import axios from "axios";
 import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
@@ -12,18 +12,18 @@ import {
   SEND_EMAIL_FAILURE,
 } from "../reducers/user";
 
-// function loginAPI(data) {
-//   return axios.post("http://172.30.1.52:5000/login", data);
-// }
+function loginAPI(data) {
+  return axios.post("/login", data);
+}
 
 function* login(action) {
-  // const result = yield call(loginAPI, action.data);
-  console.log(action.data);
+  const result = yield call(loginAPI, action.data);
+  console.log(result);
+
   try {
     yield put({
       type: LOGIN_SUCCESS,
-      // data: result.data.googleId,
-      data: "ddd",
+      data: result.data,
     });
   } catch (error) {
     yield put({
@@ -37,13 +37,13 @@ function* watchlogin() {
   yield takeLatest(LOGIN_REQUEST, login);
 }
 
-// function logoutAPI(data) {
-//   return axios.post("/logout", data, { withCredentials: true });
-// }
+function logoutAPI(data) {
+  return axios.post("/logout", data, { withCredentials: true });
+}
 
 function* logout(action) {
-  // const result = yield call(logoutAPI, action.id);
-  console.log(action.data);
+  const result = yield call(logoutAPI, action.id);
+
   try {
     yield put({
       type: LOGOUT_SUCCESS,
@@ -51,7 +51,7 @@ function* logout(action) {
   } catch (error) {
     yield put({
       type: LOGOUT_FAILURE,
-      error: error.response.data,
+      error: result.data.error,
     });
   }
 }
@@ -60,17 +60,15 @@ function* watchlogout() {
   yield takeLatest(LOGOUT_REQUEST, logout);
 }
 
-// function sendEmailAPI(data) {
-//   console.log("데이터 보낸다.", data);
-//   return axios.post("http://172.30.1.52:5000/mail", data);
-// }
+function sendEmailAPI(data) {
+  return axios.post("/mail", data);
+}
 
 function* sendEmail(action) {
-  console.log(action.data);
-  // const result = yield call(sendEmailAPI, action.data);
+  const result = yield call(sendEmailAPI, action.data);
+  console.log(result);
 
   try {
-    console.log("done");
     yield put({
       type: SEND_EMAIL_SUCCESS,
     });
@@ -88,6 +86,5 @@ function* watchSendEmail() {
 }
 
 export default function* translateSaga() {
-  console.log("watch Saga");
   yield all([fork(watchlogin), fork(watchlogout), fork(watchSendEmail)]);
 }

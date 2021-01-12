@@ -1,6 +1,6 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Button, Icon, Form, Input } from "semantic-ui-react";
 import styled from "styled-components";
 import { SEND_EMAIL_REQUEST } from "../../reducers/user";
@@ -31,15 +31,21 @@ const ContainForm = styled.div`
 
 const SendMail = ({ onClickClosed, setclickMail }) => {
   const dispatch = useDispatch("");
+  const { sendEmailrequest, sendEmailfailure } = useSelector(
+    (state) => state.user,
+  );
 
   const [email, onChangeEmail] = useTextInput("");
   const [subject, onChangeSubject] = useTextInput("");
   const [content, onChangeContent] = useTextInput("");
 
-  const onSubmit = useCallback(() => {
-    console.log("submit");
-    console.log(email);
+  useEffect(() => {
+    if (sendEmailfailure) {
+      alert("이메일을 전송할 수 없습니다.");
+    }
+  }, [sendEmailfailure]);
 
+  const onSubmit = useCallback(() => {
     dispatch({
       type: SEND_EMAIL_REQUEST,
       data: {
@@ -88,7 +94,9 @@ const SendMail = ({ onClickClosed, setclickMail }) => {
               onChange={onChangeContent}
               value={content}
             />
-            <Button type="submit">Submit</Button>
+            <Button type="submit" loading={sendEmailrequest}>
+              전송
+            </Button>
           </Form>
         </ContainForm>
       </Overlay>

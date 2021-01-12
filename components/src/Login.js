@@ -9,9 +9,12 @@ const Login = () => {
   const dispatch = useDispatch("");
 
   const responseSuccessGoogle = (response) => {
+    console.log(response);
     dispatch({
       type: LOGIN_REQUEST,
-      data: { response },
+      data: {
+        googleId: response.googleId,
+      },
     });
   };
 

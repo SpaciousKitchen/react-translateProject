@@ -34,6 +34,7 @@ const AppLayout = memo(({ children }) => {
 
   useEffect(() => {
     if (sendEmailsuccess) {
+      console.log("보여랏Success");
       setvisible(true);
     }
   }, [sendEmailsuccess]);
@@ -47,7 +48,6 @@ const AppLayout = memo(({ children }) => {
 
   const handleDismiss = () => {
     setvisible(false);
-    console.log(visible);
   };
 
   return (

@@ -88,7 +88,6 @@ export default (state = init, action) => {
       };
     }
     case SEND_EMAIL_SUCCESS: {
-      console.log("sendEmailSucess");
       return {
         ...state,
         sendEmailrequest: false,

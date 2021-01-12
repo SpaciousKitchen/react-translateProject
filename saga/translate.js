@@ -13,7 +13,7 @@ import {
 
 function translateSimpleAPI(data) {
   console.log("서버에 데이터 보낸다", data);
-  return axios.post("http://172.30.1.52:5000/extractverbphrase", data);
+  return axios.post("/extractverbphrase", data);
 }
 
 function* translateSimple(action) {
@@ -31,7 +31,7 @@ function* translateSimple(action) {
     console.log("fails");
     yield put({
       type: TRANSLATE_SIMPLE_FAILURE,
-      error: error.response.data,
+      error: result.data.error,
     });
   }
 }
@@ -41,7 +41,7 @@ function* watchTranslateSimple() {
 }
 function translateTemplateAPI(data) {
   console.log("서버에 데이터 보낸다_template", data);
-  return axios.post("http://172.30.1.52:5000/extractverbphrase", data);
+  return axios.post("/extractverbphrase", data);
 }
 
 function* translateTemplate(action) {

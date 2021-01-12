@@ -9,7 +9,7 @@ import SendMail from "./SendMail";
 const Logout = () => {
   const dispatch = useDispatch("");
 
-  const { user, sendEmailsuccess } = useSelector((state) => state.translate);
+  const { user, sendEmailsuccess } = useSelector((state) => state.user);
   const [clickMail, setclickMail] = useState(false);
 
   useEffect(() => {

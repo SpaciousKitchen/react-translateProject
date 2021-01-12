@@ -54,9 +54,9 @@ export default (state = init, action) => {
     case TRANSLATE_SIMPLE_FAILURE: {
       return {
         ...state,
-        templaterequest: false,
-        templatesuccess: false,
-        templatefailure: true,
+        translateSimplerequest: false,
+        translateSimplesuccess: false,
+        translateSimplefailure: true,
       };
     }
     case TRANSLATE_TEMPLATE_REQUEST: {

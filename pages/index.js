@@ -48,12 +48,22 @@ const ListContainer = styled.div`
 `;
 
 const Main = memo(() => {
-  const { translateSimplesuccess, simple } = useSelector(
-    (state) => state.translate,
-  );
+  const {
+    simple,
+    translateSimplerequeset,
+    translateSimplesuccess,
+    translateSimplefailure,
+  } = useSelector((state) => state.translate);
   const [text, setText] = useState("");
   const [textOut, setTextOut] = useState("");
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (translateSimplefailure) {
+      console.log("불가능한문장");
+      alert("불가능한 문장입니다.");
+    }
+  }, [translateSimplefailure]);
 
   useEffect(() => {
     if (translateSimplesuccess) {
@@ -118,6 +128,7 @@ const Main = memo(() => {
                 basic
                 icon="exchange"
                 type="submit"
+                loading={translateSimplerequeset}
               />
             </Form>
             <Button
@@ -138,6 +149,7 @@ const Main = memo(() => {
                 padding: "11px 35px 11px 11px",
                 borderRadius: ".28571429rem",
                 overflow: "auto",
+                whiteSpace: "pre",
               }}
             >
               {textOut}
