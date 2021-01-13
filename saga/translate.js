@@ -55,9 +55,10 @@ function* translateTemplate(action) {
     });
   } catch (error) {
     console.log("fails");
+
     yield put({
       type: TRANSLATE_TEMPLATE_FAILURE,
-      error: error.response.data,
+      error: result.data.error,
     });
   }
 }

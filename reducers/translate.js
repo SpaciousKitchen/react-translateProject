@@ -117,7 +117,7 @@ export default (state = init, action) => {
         ...state,
         templateTemplaterequest: false,
         templateTemplatesuccess: true,
-        templateTemplatefailure: true,
+        templateTemplatefailure: false,
         template: obj,
       };
     }

@@ -29,7 +29,8 @@
         "eslintno-unused-vars":"off",
         "import/no-named-as-default": 0,
         "jsx-a11y/label-has-associated-control":"off",
-        "no-console":"off"
+        "no-console":"off",
+        "react/jsx-props-no-spreading":"off"
         
 
     }

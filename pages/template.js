@@ -32,10 +32,6 @@ const SimpleContainer = styled.div`
   }
 `;
 
-const ButtonStyled = styled(Button)`
-  background: red;
-`;
-
 const Template = () => {
   const options = [
     { key: 1, text: "결제", value: 1 },
@@ -54,10 +50,18 @@ const Template = () => {
   const {
     templateTemplatesuccess,
     templateTemplaterequest,
+    templateTemplatefailure,
+
     template,
   } = useSelector((state) => state.translate);
 
   const dispatch = useDispatch("");
+
+  useEffect(() => {
+    if (templateTemplatefailure) {
+      alert("불가능한 문장입니다.");
+    }
+  }, [templateTemplatefailure]);
 
   useEffect(() => {
     if (templateTemplatesuccess) {
@@ -156,10 +160,11 @@ const Template = () => {
       />
       <div style={{ position: "fixed", height: "100%", width: "100%" }}>
         <SimpleContainer>
-          <SimpleCol style={{ flex: 0.8 }}>
+          <SimpleCol style={{ flex: 0.7 }}>
             <Form style={{ height: "100%" }}>
               <div style={{ height: "22%", position: "relative" }}>
-                <TextArea
+                <textarea
+                  className="textAreaTemlate"
                   style={{
                     height: "100%",
                     width: "100%",
@@ -257,20 +262,22 @@ const Template = () => {
             </Form>
           </SimpleCol>
 
-          <SimpleCol style={{ flex: 0.1 }}>
-            <ButtonStyled
-              icon
+          <SimpleCol style={{ flex: 0.2, textAlign: "center" }}>
+            <Button
               onClick={onSubmit}
-              labelPosition="right"
               type="submit"
               loading={templateTemplaterequest}
             >
-              <Icon name="exchange" />
               변환
-            </ButtonStyled>
+              <br />
+              <br />
+              <div>
+                <Icon name="exchange" size="large" />
+              </div>
+            </Button>
           </SimpleCol>
 
-          <SimpleCol style={{ flex: 0.8 }}>
+          <SimpleCol style={{ flex: 0.7 }}>
             <div
               style={{
                 background: "#EBEBEB",
