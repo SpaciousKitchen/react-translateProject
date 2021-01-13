@@ -25,6 +25,7 @@ export const LOGOUT_FAILURE = "LOGOUT_FAILURE";
 export const SEND_EMAIL_REQUEST = "SEND_EMAIL_REQUEST";
 export const SEND_EMAIL_SUCCESS = "SEND_EMAIL_SUCCESS";
 export const SEND_EMAIL_FAILURE = "SEND_EMAIL_FAILURE";
+export const SEND_EMAIL_END = "SEND_EMAIL_END";
 
 export default (state = init, action) => {
   switch (action.type) {
@@ -101,6 +102,14 @@ export default (state = init, action) => {
         sendEmailrequest: false,
         sendEmailsuccess: false,
         sendEmailfailure: action.error,
+      };
+    }
+    case SEND_EMAIL_END: {
+      return {
+        ...state,
+        sendEmailrequest: false,
+        sendEmailsuccess: false,
+        sendEmailfailure: false,
       };
     }
     default: {

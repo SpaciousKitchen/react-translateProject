@@ -20,7 +20,7 @@ const ContainMessage = styled.div`
 const AppLayout = memo(({ children }) => {
   const [activeItem, setActiveItem] = useState();
   const [visible, setvisible] = useState(false);
-  const { user, sendEmailsuccess } = useSelector((state) => state.user);
+  const { user } = useSelector((state) => state.user);
 
   useEffect(() => {
     if (activeItem === "존댓말 변환") {
@@ -31,13 +31,6 @@ const AppLayout = memo(({ children }) => {
       Router.push("/template");
     }
   }, [activeItem]);
-
-  useEffect(() => {
-    if (sendEmailsuccess) {
-      console.log("보여랏Success");
-      setvisible(true);
-    }
-  }, [sendEmailsuccess]);
 
   const handleItemClick = useCallback(
     (e, { name }) => {
@@ -65,7 +58,7 @@ const AppLayout = memo(({ children }) => {
         />
 
         <Menu.Menu position="right" style={{ padding: "10px" }}>
-          {user == null ? <Login /> : <Logout />}
+          {user == null ? <Login /> : <Logout setvisible={setvisible} />}
         </Menu.Menu>
       </Menu>
       {children}

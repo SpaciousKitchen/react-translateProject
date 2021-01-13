@@ -48,7 +48,7 @@ const Template = () => {
   const [textStart, setTextStart] = useState("");
   const [textMiddle, setTextMiddle] = useState("");
   const [textEnd, setTextEnd] = useState("");
-  const [optionSelected, setoptionSelected] = useState("");
+  const [optionSelected, setoptionSelected] = useState(1);
   const [textOut, setTextOut] = useState("");
 
   const {
@@ -150,6 +150,8 @@ const Template = () => {
         clearable
         options={options}
         selection
+        defaultValue={1}
+        defaultOpen
         style={{ marginTop: "10px", marginLeft: "30px" }}
       />
       <div style={{ position: "fixed", height: "100%", width: "100%" }}>
@@ -170,7 +172,12 @@ const Template = () => {
                   value={textStart}
                 />
                 <Button
-                  style={{ top: "4px", right: "9px", position: "absolute" }}
+                  style={{
+                    top: "4px",
+                    right: "9px",
+                    position: "absolute",
+                    boxShadow: "none",
+                  }}
                   position
                   basic
                   icon="redo"
@@ -200,7 +207,12 @@ const Template = () => {
                   value={textMiddle}
                 />
                 <Button
-                  style={{ top: "4px", right: "9px", position: "absolute" }}
+                  style={{
+                    top: "4px",
+                    right: "9px",
+                    position: "absolute",
+                    boxShadow: "none",
+                  }}
                   position
                   basic
                   icon="redo"
@@ -229,7 +241,12 @@ const Template = () => {
                   value={textEnd}
                 />
                 <Button
-                  style={{ top: "4px", right: "9px", position: "absolute" }}
+                  style={{
+                    top: "4px",
+                    right: "9px",
+                    position: "absolute",
+                    boxShadow: "none",
+                  }}
                   position
                   basic
                   icon="redo"
@@ -274,8 +291,9 @@ const Template = () => {
                   bottom: "35px",
                   right: "36.5px",
                   position: "absolute",
+                  background: "#EBEBEB",
 
-                  Index: 1000,
+                  zIndex: 1000,
                 }}
               />
             </CopyToClipboard>

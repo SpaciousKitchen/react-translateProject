@@ -123,7 +123,12 @@ const Main = memo(() => {
               />
 
               <Button
-                style={{ bottom: "5px", right: "9px", position: "absolute" }}
+                style={{
+                  bottom: "5px",
+                  right: "9px",
+                  position: "absolute",
+                  boxShadow: "none",
+                }}
                 position
                 basic
                 icon="exchange"
@@ -132,7 +137,12 @@ const Main = memo(() => {
               />
             </Form>
             <Button
-              style={{ top: "35px", right: "39px", position: "absolute" }}
+              style={{
+                top: "35px",
+                right: "39px",
+                position: "absolute",
+                boxShadow: "none",
+              }}
               position
               basic
               icon="redo"

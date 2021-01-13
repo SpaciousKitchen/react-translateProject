@@ -29,7 +29,7 @@ const ContainForm = styled.div`
   flex-direction: column;
 `;
 
-const SendMail = ({ onClickClosed, setclickMail }) => {
+const SendMail = ({ onClickClosed }) => {
   const dispatch = useDispatch("");
   const { sendEmailrequest, sendEmailfailure } = useSelector(
     (state) => state.user,
@@ -56,7 +56,7 @@ const SendMail = ({ onClickClosed, setclickMail }) => {
     });
 
     // console.log(text);
-  }, [setclickMail, email, subject, content]);
+  }, [email, subject, content]);
 
   return (
     <>

@@ -2,11 +2,11 @@ import React, { useCallback, useState, useEffect } from "react";
 import { GoogleLogout } from "react-google-login";
 import { useSelector, useDispatch } from "react-redux";
 import { Button } from "semantic-ui-react";
-import { LOGOUT_REQUEST } from "../../reducers/user";
+import { LOGOUT_REQUEST, SEND_EMAIL_END } from "../../reducers/user";
 
 import SendMail from "./SendMail";
 
-const Logout = () => {
+const Logout = ({ setvisible }) => {
   const dispatch = useDispatch("");
 
   const { user, sendEmailsuccess } = useSelector((state) => state.user);
@@ -14,12 +14,17 @@ const Logout = () => {
 
   useEffect(() => {
     if (sendEmailsuccess) {
-      setclickMail((pre) => !pre);
+      setclickMail(false);
+      setvisible(true);
     }
-  }, [sendEmailsuccess]);
+    dispatch({ type: SEND_EMAIL_END });
+  }, [sendEmailsuccess, clickMail]);
 
   const onClickSendMail = useCallback(() => {
-    setclickMail((pre) => !pre);
+    setclickMail(true);
+  }, [clickMail]);
+  const onClickClosed = useCallback(() => {
+    setclickMail(false);
   }, [clickMail]);
 
   const logoutGoogle = () => {
@@ -45,7 +50,7 @@ const Logout = () => {
       />
       {clickMail && (
         <SendMail
-          onClickClosed={onClickSendMail}
+          onClickClosed={onClickClosed}
           setclickMail={setclickMail}
           clickMail={clickMail}
         />
