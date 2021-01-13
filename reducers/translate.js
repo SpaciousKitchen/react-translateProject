@@ -6,13 +6,13 @@ export const init = {
   translateTemplaterequest: false,
   translateTemplatesuccess: false,
   translateTemplatefailure: false,
-  simple: [{ Output: "릴릴", Input: "input", id: "1" }],
+  simple: [],
   template: {
-    Pay: null,
-    Promotion: null,
-    Thanks: null,
-    Request: null,
-    Greeting: null,
+    1: null,
+    2: null,
+    3: null,
+    4: null,
+    5: null,
   },
 };
 
@@ -69,7 +69,49 @@ export default (state = init, action) => {
     }
     case TRANSLATE_TEMPLATE_SUCCESS: {
       const obj = state.template;
-      obj.Pay = { id: action.id, Input: action.Input, Output: action.Output };
+
+      switch (action.option) {
+        case 1:
+          obj["1"] = {
+            id: action.id,
+            Input: action.Input,
+            Output: action.Output,
+          };
+          break;
+        case 2:
+          obj["2"] = {
+            id: action.id,
+            Input: action.Input,
+            Output: action.Output,
+          };
+          break;
+
+        case 3:
+          obj["3"] = {
+            id: action.id,
+            Input: action.Input,
+            Output: action.Output,
+          };
+          break;
+
+        case 4:
+          obj["4"] = {
+            id: action.id,
+            Input: action.Input,
+            Output: action.Output,
+          };
+          break;
+        case 5:
+          obj["5"] = {
+            id: action.id,
+            Input: action.Input,
+            Output: action.Output,
+          };
+          break;
+        default:
+          alert("불가능한 설정입니다.");
+          break;
+      }
 
       return {
         ...state,

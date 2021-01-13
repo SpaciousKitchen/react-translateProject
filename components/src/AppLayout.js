@@ -72,7 +72,7 @@ const AppLayout = memo(({ children }) => {
       {visible === true ? (
         <ContainMessage>
           <Message
-            style={{ zIndex: 1000, width: "40%", margin: "auto" }}
+            style={{ zIndex: 1000, width: "335px", margin: "auto" }}
             onDismiss={handleDismiss}
             icon="inbox"
             header="메일 전송을 완료 하였습니다"

@@ -51,16 +51,38 @@ const Template = () => {
   const [optionSelected, setoptionSelected] = useState("");
   const [textOut, setTextOut] = useState("");
 
-  const { templateTemplatesuccess, template } = useSelector(
-    (state) => state.translate,
-  );
+  const {
+    templateTemplatesuccess,
+    templateTemplaterequest,
+    template,
+  } = useSelector((state) => state.translate);
 
   const dispatch = useDispatch("");
 
   useEffect(() => {
     if (templateTemplatesuccess) {
-      setTextOut(template.Pay.Output);
-      console.log(textOut);
+      switch (optionSelected) {
+        case 1:
+          setTextOut(template["1"].Output);
+          break;
+        case 2:
+          setTextOut(template["2"].Output);
+          break;
+
+        case 3:
+          setTextOut(template["3"].Output);
+          break;
+
+        case 4:
+          setTextOut(template["4"].Output);
+          break;
+        case 5:
+          setTextOut(template["5"].Output);
+          break;
+        default:
+          alert("불가능한 설정입니다.");
+          break;
+      }
     }
   }, [templateTemplatesuccess]);
 
@@ -224,6 +246,7 @@ const Template = () => {
               onClick={onSubmit}
               labelPosition="right"
               type="submit"
+              loading={templateTemplaterequest}
             >
               <Icon name="exchange" />
               변환
