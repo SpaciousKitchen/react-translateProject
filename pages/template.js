@@ -11,8 +11,7 @@ const SimpleCol = styled.div`
   padding: 10px 30px;
   height: 80%;
   position: relative;
-  width: 80%;
-
+  width: 40%;
   @media only screen and (max-width: 768px) {
     width: 100%;
     height: 50%;
@@ -22,6 +21,7 @@ const SimpleCol = styled.div`
 
 const SimpleContainer = styled.div`
   height: 100%;
+  width: 100%;
   position: relative;
   display: flex;
   flex-direction: row;
@@ -161,7 +161,7 @@ const Template = () => {
       <div style={{ position: "fixed", height: "100%", width: "100%" }}>
         <SimpleContainer>
           <SimpleCol style={{ flex: 0.7 }}>
-            <Form style={{ height: "100%" }}>
+            <Form style={{ height: "100%", width: "100%" }}>
               <div style={{ height: "22%", position: "relative" }}>
                 <textarea
                   className="textAreaTemlate"
@@ -171,6 +171,7 @@ const Template = () => {
                     resize: "none",
                     border: "1px solid rgba(34,36,38,.15)",
                     borderRadius: ".28571429rem",
+                    padding: "11px 46px 11px 11px",
                   }}
                   placeholder="텍스트를 입력하세요..."
                   onChange={onChangeStart}
@@ -203,9 +204,9 @@ const Template = () => {
                     height: "100%",
                     resize: "none",
                     width: "100%",
-
                     border: "1px solid rgba(34,36,38,.15)",
                     borderRadius: ".28571429rem",
+                    padding: "11px 46px 11px 11px",
                   }}
                   placeholder="텍스트를 입력하세요..."
                   onChange={onChangeMiddle}
@@ -237,7 +238,7 @@ const Template = () => {
                     height: "100%",
                     resize: "none",
                     width: "100%",
-
+                    padding: "11px 46px 11px 11px",
                     border: "1px solid rgba(34,36,38,.15)",
                     borderRadius: ".28571429rem",
                   }}
@@ -280,6 +281,7 @@ const Template = () => {
           <SimpleCol style={{ flex: 0.7 }}>
             <div
               style={{
+                width: "100%",
                 background: "#EBEBEB",
                 height: "100%",
                 padding: ".78571429em 1em",

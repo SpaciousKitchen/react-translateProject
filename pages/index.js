@@ -9,7 +9,7 @@ import AppLayout from "../components/src/AppLayout";
 import { TRANSLATE_SIMPLE_REQUEST } from "../reducers/translate";
 
 const SimpleCol = styled.div`
-  width: 100%;
+  width: 50%;
   padding: 30px;
   height: 100%;
   position: relative;
@@ -24,7 +24,7 @@ const SimpleCol = styled.div`
 const SimpleContainer = styled.div`
   height: 70%;
   position: relative;
-
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -154,11 +154,13 @@ const Main = memo(() => {
           <SimpleCol>
             <div
               style={{
+                width: "100%",
                 background: "#e0e1e2",
                 height: "100%",
                 padding: "11px 35px 11px 11px",
                 borderRadius: ".28571429rem",
-                overflow: "auto",
+                overflowY: "auto",
+                overflowX: "auto",
                 whiteSpace: "pre",
               }}
             >
