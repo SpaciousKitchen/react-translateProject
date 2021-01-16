@@ -68,6 +68,14 @@ function sendEmailAPI(data) {
 function* sendEmail(action) {
   const result = yield call(sendEmailAPI, action.data);
   console.log(result);
+  if (result.data.error) {
+    console.log("erorr다!!");
+    yield put({
+      type: SEND_EMAIL_FAILURE,
+      error: result.data.error,
+    });
+    return;
+  }
 
   try {
     yield put({
@@ -77,7 +85,7 @@ function* sendEmail(action) {
     console.log("fails");
     yield put({
       type: SEND_EMAIL_FAILURE,
-      error: error.response.data,
+      error: result.data.error,
     });
   }
 }
