@@ -1,46 +1,22 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Form, TextArea, Button, Icon, Dropdown } from "semantic-ui-react";
-import styled from "styled-components";
+
 import { CopyToClipboard } from "react-copy-to-clipboard";
-import AppLayout from "../components/src/AppLayout";
+import AppLayout from "../components/AppLayout";
 import { TRANSLATE_TEMPLATE_REQUEST } from "../reducers/translate";
 
-const SimpleCol = styled.div`
-  /* width: 100%; */
-  padding: 10px 30px;
-  height: 80%;
-  position: relative;
-  width: 40%;
-  @media only screen and (max-width: 768px) {
-    width: 100%;
-    height: 50%;
-    marin: 0 auto;
-  }
-`;
+import { TemplateCol, TemplateContainer } from "../components/src/style";
 
-const SimpleContainer = styled.div`
-  height: 100%;
-  width: 100%;
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  @media only screen and (max-width: 768px) {
-    height: 80%;
-    display: block;
-  }
-`;
+const options = [
+  { key: 1, text: "축하", value: 1 },
+  { key: 2, text: "요청", value: 2 },
+  { key: 3, text: "권유", value: 3 },
+  { key: 4, text: "결재", value: 4 },
+  { key: 5, text: "감사", value: 5 },
+];
 
 const Template = () => {
-  const options = [
-    { key: 1, text: "축하", value: 1 },
-    { key: 2, text: "요청", value: 2 },
-    { key: 3, text: "권유", value: 3 },
-    { key: 4, text: "결재", value: 4 },
-    { key: 5, text: "감사", value: 5 },
-  ];
-
   const [textStart, setTextStart] = useState("");
   const [textMiddle, setTextMiddle] = useState("");
   const [textEnd, setTextEnd] = useState("");
@@ -195,8 +171,8 @@ const Template = () => {
         style={{ marginTop: "10px", marginLeft: "30px" }}
       />
       <div style={{ position: "fixed", height: "100%", width: "100%" }}>
-        <SimpleContainer>
-          <SimpleCol style={{ flex: 0.7 }}>
+        <TemplateContainer>
+          <TemplateCol style={{ flex: 0.7 }}>
             <Form style={{ height: "100%", width: "100%" }}>
               <div style={{ height: "22%", position: "relative" }}>
                 <textarea
@@ -297,9 +273,9 @@ const Template = () => {
                 />
               </div>
             </Form>
-          </SimpleCol>
+          </TemplateCol>
 
-          <SimpleCol style={{ flex: 0.2, textAlign: "center" }}>
+          <TemplateCol style={{ flex: 0.2, textAlign: "center" }}>
             <Button
               onClick={onSubmit}
               type="submit"
@@ -312,9 +288,9 @@ const Template = () => {
                 <Icon name="exchange" size="large" />
               </div>
             </Button>
-          </SimpleCol>
+          </TemplateCol>
 
-          <SimpleCol style={{ flex: 0.7 }}>
+          <TemplateCol style={{ flex: 0.7 }}>
             <div
               style={{
                 width: "100%",
@@ -342,8 +318,8 @@ const Template = () => {
                 }}
               />
             </CopyToClipboard>
-          </SimpleCol>
-        </SimpleContainer>
+          </TemplateCol>
+        </TemplateContainer>
       </div>
     </AppLayout>
   );

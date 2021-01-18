@@ -4,18 +4,10 @@ import { useSelector } from "react-redux";
 import propTypes from "prop-types";
 import { Menu, Message } from "semantic-ui-react";
 
-import styled from "styled-components";
 import Login from "./Login";
 import Logout from "./Logout";
 
-const ContainMessage = styled.div`
-  padding: 20px;
-  display: flex;
-  flex: 0.5;
-  height: 500px;
-  border-radius: 0.28571429rem;
-  flex-direction: column;
-`;
+import { ContainMessage } from "./src/style";
 
 const AppLayout = memo(({ children }) => {
   const [activeItem, setActiveItem] = useState();
@@ -24,7 +16,6 @@ const AppLayout = memo(({ children }) => {
 
   useEffect(() => {
     if (activeItem === "존댓말 변환") {
-      // console.log("존맷말로 변환할게요");
       Router.push("/");
     } else if (activeItem === "업무 템플릿") {
       console.log("업무 템플릿으로 변환할게요");

@@ -8,7 +8,6 @@ import SendMail from "./SendMail";
 
 const Logout = ({ setvisible }) => {
   const dispatch = useDispatch("");
-
   const { user, sendEmailsuccess } = useSelector((state) => state.user);
   const [clickMail, setclickMail] = useState(false);
 

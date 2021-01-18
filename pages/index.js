@@ -1,51 +1,15 @@
 import React, { useState, useCallback, memo, useEffect } from "react";
 import { Form, TextArea, Button } from "semantic-ui-react";
-import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { CopyToClipboard } from "react-copy-to-clipboard";
-import History from "../components/src/History";
-import AppLayout from "../components/src/AppLayout";
-
+import History from "../components/History";
+import AppLayout from "../components/AppLayout";
+import {
+  SimpleCol,
+  SimpleContainer,
+  ListContainer,
+} from "../components/src/style";
 import { TRANSLATE_SIMPLE_REQUEST } from "../reducers/translate";
-
-const SimpleCol = styled.div`
-  width: 50%;
-  padding: 30px;
-  height: 100%;
-  position: relative;
-
-  @media only screen and (max-width: 768px) {
-    width: 100%;
-    height: 50%;
-    marin: 0 auto;
-  }
-`;
-
-const SimpleContainer = styled.div`
-  height: 70%;
-  position: relative;
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  @media only screen and (max-width: 768px) {
-    height: 60%;
-    display: block;
-  }
-`;
-
-const ListContainer = styled.div`
-  height: 30%;
-  margin-left: 40px;
-  margin-right: 40px;
-  position: relative;
-
-  @media only screen and (max-width: 768px) {
-    padding: 30px;
-    margin-left: 0px;
-    margin-right: 0px;
-  }
-`;
 
 const Main = memo(() => {
   const {
