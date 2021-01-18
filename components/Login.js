@@ -3,7 +3,7 @@ import { GoogleLogin } from "react-google-login";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Icon } from "semantic-ui-react";
 
-import { LOGIN_REQUEST } from "../../reducers/user";
+import { LOGIN_REQUEST } from "../reducers/user";
 
 const Login = () => {
   const { loginrequest } = useSelector((state) => state.user);

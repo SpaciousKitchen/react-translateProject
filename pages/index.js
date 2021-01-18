@@ -123,9 +123,8 @@ const Main = memo(() => {
                 height: "100%",
                 padding: "11px 35px 11px 11px",
                 borderRadius: ".28571429rem",
-                overflowY: "auto",
                 overflowX: "auto",
-                whiteSpace: "pre",
+                whiteSpace: "pre-wrap",
               }}
             >
               {textOut}
@@ -139,7 +138,6 @@ const Main = memo(() => {
                   bottom: "35px",
                   right: "36.5px",
                   position: "absolute",
-
                   Index: 1000,
                 }}
               />

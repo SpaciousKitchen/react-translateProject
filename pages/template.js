@@ -298,8 +298,8 @@ const Template = () => {
                 height: "100%",
                 padding: ".78571429em 1em",
                 borderRadius: ".28571429rem",
-                overflow: "auto",
-                whiteSpace: "pre",
+                overflowX: "auto",
+                whiteSpace: "pre-wrap",
               }}
             >
               {textOut}
@@ -313,7 +313,6 @@ const Template = () => {
                   right: "36.5px",
                   position: "absolute",
                   background: "#EBEBEB",
-
                   zIndex: 1000,
                 }}
               />

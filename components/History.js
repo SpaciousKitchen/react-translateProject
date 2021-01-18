@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { List, Button } from "semantic-ui-react";
-import { REMOVE_SIMPLE_REQUEST } from "../../reducers/translate";
+import { REMOVE_SIMPLE_REQUEST } from "../reducers/translate";
 
 const History = ({ onItemClick }) => {
   const { simple } = useSelector((state) => state.translate);

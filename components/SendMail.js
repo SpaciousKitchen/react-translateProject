@@ -3,8 +3,8 @@ import React, { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Icon, Form, Input } from "semantic-ui-react";
 
-import { SEND_EMAIL_REQUEST } from "../../reducers/user";
-import useTextInput from "../../hooks/useTextInput";
+import { SEND_EMAIL_REQUEST } from "../reducers/user";
+import useTextInput from "../hooks/useTextInput";
 
 import { Overlay, ContainForm } from "./src/style";
 

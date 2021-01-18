@@ -2,7 +2,7 @@ import React, { useCallback, useState, useEffect } from "react";
 import { GoogleLogout } from "react-google-login";
 import { useSelector, useDispatch } from "react-redux";
 import { Button } from "semantic-ui-react";
-import { LOGOUT_REQUEST, SEND_EMAIL_END } from "../../reducers/user";
+import { LOGOUT_REQUEST, SEND_EMAIL_END } from "../reducers/user";
 
 import SendMail from "./SendMail";
 
