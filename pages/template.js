@@ -34,11 +34,11 @@ const SimpleContainer = styled.div`
 
 const Template = () => {
   const options = [
-    { key: 1, text: "결제", value: 1 },
-    { key: 2, text: "홍보", value: 2 },
-    { key: 3, text: "감사", value: 3 },
-    { key: 4, text: "요청", value: 4 },
-    { key: 5, text: "안부", value: 5 },
+    { key: 1, text: "축하", value: 1 },
+    { key: 2, text: "요청", value: 2 },
+    { key: 3, text: "권유", value: 3 },
+    { key: 4, text: "결재", value: 4 },
+    { key: 5, text: "감사", value: 5 },
   ];
 
   const [textStart, setTextStart] = useState("");
@@ -56,6 +56,42 @@ const Template = () => {
   } = useSelector((state) => state.translate);
 
   const dispatch = useDispatch("");
+
+  useEffect(() => {
+    setTextOut("");
+    switch (optionSelected) {
+      case 1:
+        setTextStart(template["1"].InputStart);
+        setTextMiddle(template["1"].InputMiddle);
+        setTextEnd(template["1"].InputEnd);
+        break;
+      case 2:
+        setTextStart(template["2"].InputStart);
+        setTextMiddle(template["2"].InputMiddle);
+        setTextEnd(template["2"].InputEnd);
+        break;
+
+      case 3:
+        setTextStart(template["3"].InputStart);
+        setTextMiddle(template["3"].InputMiddle);
+        setTextEnd(template["3"].InputEnd);
+        break;
+
+      case 4:
+        setTextStart(template["4"].InputStart);
+        setTextMiddle(template["4"].InputMiddle);
+        setTextEnd(template["4"].InputEnd);
+        break;
+      case 5:
+        setTextStart(template["5"].InputStart);
+        setTextMiddle(template["5"].InputMiddle);
+        setTextEnd(template["5"].InputEnd);
+        break;
+      default:
+        alert("불가능한 설정입니다.");
+        break;
+    }
+  }, [optionSelected]);
 
   useEffect(() => {
     if (templateTemplatefailure) {
