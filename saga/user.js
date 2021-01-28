@@ -1,6 +1,9 @@
 import { all, takeLatest, fork, put, call } from "redux-saga/effects";
 import axios from "axios";
 import {
+  LOAD_USERINFO_REQUEST,
+  LOAD_USERINFO_SUCCESS,
+  LOAD_USERINFO_FAILURE,
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
@@ -12,6 +15,34 @@ import {
   SEND_EMAIL_FAILURE,
 } from "../reducers/user";
 import { LOAD_TRANSLATE_SIMPLE_REQUEST } from "../reducers/translate";
+
+function loadUserInfoAPI() {
+  return axios.get("/loadUserInfo");
+}
+
+function* loadUserInfo() {
+  const result = yield call(loadUserInfoAPI);
+  console.log(result);
+
+  try {
+    yield put({
+      type: LOAD_USERINFO_SUCCESS,
+      data: result.data,
+    });
+    yield put({
+      type: LOAD_TRANSLATE_SIMPLE_REQUEST,
+    });
+  } catch (error) {
+    yield put({
+      type: LOAD_USERINFO_FAILURE,
+      error: error.response.data,
+    });
+  }
+}
+
+function* watchloadUserInfo() {
+  yield takeLatest(LOAD_USERINFO_REQUEST, loadUserInfo);
+}
 
 function loginAPI(data) {
   return axios.post("/login", data);
@@ -100,5 +131,10 @@ function* watchSendEmail() {
 }
 
 export default function* translateSaga() {
-  yield all([fork(watchlogin), fork(watchlogout), fork(watchSendEmail)]);
+  yield all([
+    fork(watchloadUserInfo),
+    fork(watchlogin),
+    fork(watchlogout),
+    fork(watchSendEmail),
+  ]);
 }

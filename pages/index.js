@@ -1,9 +1,10 @@
 import React, { useState, useCallback, memo, useEffect } from "react";
 import { Form, TextArea, Button } from "semantic-ui-react";
 import { useSelector, useDispatch } from "react-redux";
-
 import { CopyToClipboard } from "react-copy-to-clipboard";
-
+import { END } from "redux-saga";
+import axios from "axios";
+import wrapper from "../store/configureStore";
 import History from "../components/History";
 import AppLayout from "../components/AppLayout";
 import {
@@ -11,7 +12,11 @@ import {
   SimpleContainer,
   ListContainer,
 } from "../components/src/style";
-import { TRANSLATE_SIMPLE_REQUEST } from "../reducers/translate";
+import { LOAD_USERINFO_REQUEST } from "../reducers/user";
+import {
+  TRANSLATE_SIMPLE_REQUEST,
+  LOAD_TRANSLATE_SIMPLE_REQUEST,
+} from "../reducers/translate";
 
 const Main = memo(() => {
   const dispatch = useDispatch();
@@ -156,5 +161,27 @@ const Main = memo(() => {
     </AppLayout>
   );
 });
+
+export const getServerSideProps = wrapper.getServerSideProps(
+  async (context) => {
+    console.log("getServerSideProps start");
+    console.log(context.req.headers.cookie);
+    const cookie = context.req ? context.req.headers.cookie : "";
+    axios.defaults.headers.Cookie = "";
+    if (context.req && cookie) {
+      axios.defaults.headers.Cookie = cookie;
+      context.store.dispatch({
+        type: LOAD_USERINFO_REQUEST,
+      });
+      context.store.dispatch({
+        type: LOAD_TRANSLATE_SIMPLE_REQUEST,
+      });
+      context.store.dispatch(END);
+      await context.store.sagaTask.toPromise();
+    }
+
+    console.log("getServerSideProps end");
+  },
+);
 
 export default Main;

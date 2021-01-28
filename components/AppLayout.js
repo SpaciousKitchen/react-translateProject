@@ -71,4 +71,5 @@ const AppLayout = memo(({ children }) => {
 AppLayout.propTypes = {
   children: propTypes.node.isRequired,
 };
+
 export default AppLayout;

@@ -1,4 +1,8 @@
 export const init = {
+  loaduserInforequest: false,
+  loaduserInfosuccess: false,
+  loaduserInfofailure: false,
+
   loginrequest: false,
   loginsuccess: false,
   loginfailure: false,
@@ -13,6 +17,10 @@ export const init = {
 
   user: null,
 };
+
+export const LOAD_USERINFO_REQUEST = "LOAD_USERINFO_REQUEST";
+export const LOAD_USERINFO_SUCCESS = "LOAD_USERINFO_SUCCESS";
+export const LOAD_USERINFO_FAILURE = "LOAD_USERINFO_FAILURE";
 
 export const LOGIN_REQUEST = "LOGIN_REQUEST";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
@@ -29,6 +37,31 @@ export const SEND_EMAIL_END = "SEND_EMAIL_END";
 
 export default (state = init, action) => {
   switch (action.type) {
+    case LOAD_USERINFO_REQUEST: {
+      return {
+        ...state,
+        loaduserInforequest: true,
+        loaduserInfosuccess: false,
+        loaduserInfofailure: false,
+      };
+    }
+    case LOAD_USERINFO_SUCCESS: {
+      return {
+        ...state,
+        loaduserInforequest: false,
+        loaduserInfosuccess: true,
+        loaduserInfofailure: true,
+        user: action.data,
+      };
+    }
+    case LOAD_USERINFO_FAILURE: {
+      return {
+        ...state,
+        loaduserInforequest: false,
+        loaduserInfosuccess: false,
+        loaduserInfofailure: action.error,
+      };
+    }
     case LOGIN_REQUEST: {
       return {
         ...state,

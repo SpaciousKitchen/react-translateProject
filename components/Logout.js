@@ -17,7 +17,7 @@ const Logout = ({ setvisible }) => {
       setvisible(true);
     }
     dispatch({ type: SEND_EMAIL_END });
-  }, [sendEmailsuccess, clickMail]);
+  }, [sendEmailsuccess]);
 
   const onClickSendMail = useCallback(() => {
     setclickMail(true);
