@@ -18,7 +18,6 @@ const AppLayout = memo(({ children }) => {
     if (activeItem === "존댓말 변환") {
       Router.push("/");
     } else if (activeItem === "업무 템플릿") {
-      console.log("업무 템플릿으로 변환할게요");
       Router.push("/template");
     }
   }, [activeItem]);

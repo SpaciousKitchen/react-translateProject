@@ -57,4 +57,5 @@ const Logout = ({ setvisible }) => {
     </>
   );
 };
+
 export default Logout;

@@ -1,7 +1,9 @@
 import React, { useState, useCallback, memo, useEffect } from "react";
 import { Form, TextArea, Button } from "semantic-ui-react";
 import { useSelector, useDispatch } from "react-redux";
+
 import { CopyToClipboard } from "react-copy-to-clipboard";
+
 import History from "../components/History";
 import AppLayout from "../components/AppLayout";
 import {
@@ -12,26 +14,26 @@ import {
 import { TRANSLATE_SIMPLE_REQUEST } from "../reducers/translate";
 
 const Main = memo(() => {
+  const dispatch = useDispatch();
   const {
     simple,
     translateSimplerequeset,
     translateSimplesuccess,
     translateSimplefailure,
   } = useSelector((state) => state.translate);
+
   const [text, setText] = useState("");
   const [textOut, setTextOut] = useState("");
-  const dispatch = useDispatch();
 
   useEffect(() => {
     if (translateSimplefailure) {
-      console.log("불가능한문장");
       alert("불가능한 문장입니다.");
     }
   }, [translateSimplefailure]);
 
   useEffect(() => {
     if (translateSimplesuccess) {
-      setTextOut(simple[0].Output);
+      setTextOut(simple[0].output);
     }
   }, [translateSimplesuccess]);
 
@@ -52,9 +54,9 @@ const Main = memo(() => {
   const onClickCopy = useCallback(() => {}, []);
 
   const onItemClick = useCallback(
-    (Input, Output) => () => {
-      setTextOut(Output);
-      setText(Input);
+    (input, output) => () => {
+      setTextOut(output);
+      setText(input);
     },
     [],
   );

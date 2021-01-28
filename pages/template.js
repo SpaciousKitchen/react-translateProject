@@ -9,11 +9,11 @@ import { TRANSLATE_TEMPLATE_REQUEST } from "../reducers/translate";
 import { TemplateCol, TemplateContainer } from "../components/src/style";
 
 const options = [
-  { key: 1, text: "축하", value: 1 },
-  { key: 2, text: "요청", value: 2 },
-  { key: 3, text: "권유", value: 3 },
-  { key: 4, text: "결재", value: 4 },
-  { key: 5, text: "감사", value: 5 },
+  { text: "축하", value: 1 },
+  { text: "요청", value: 2 },
+  { text: "권유", value: 3 },
+  { text: "결재", value: 4 },
+  { text: "감사", value: 5 },
 ];
 
 const Template = () => {
@@ -27,7 +27,6 @@ const Template = () => {
     templateTemplatesuccess,
     templateTemplaterequest,
     templateTemplatefailure,
-
     template,
   } = useSelector((state) => state.translate);
 
@@ -37,31 +36,31 @@ const Template = () => {
     setTextOut("");
     switch (optionSelected) {
       case 1:
-        setTextStart(template["1"].InputStart);
-        setTextMiddle(template["1"].InputMiddle);
-        setTextEnd(template["1"].InputEnd);
+        setTextStart(template["1"].inputStart);
+        setTextMiddle(template["1"].inputMiddle);
+        setTextEnd(template["1"].inputEnd);
         break;
       case 2:
-        setTextStart(template["2"].InputStart);
-        setTextMiddle(template["2"].InputMiddle);
-        setTextEnd(template["2"].InputEnd);
+        setTextStart(template["2"].inputStart);
+        setTextMiddle(template["2"].inputMiddle);
+        setTextEnd(template["2"].inputEnd);
         break;
 
       case 3:
-        setTextStart(template["3"].InputStart);
-        setTextMiddle(template["3"].InputMiddle);
-        setTextEnd(template["3"].InputEnd);
+        setTextStart(template["3"].inputStart);
+        setTextMiddle(template["3"].inputMiddle);
+        setTextEnd(template["3"].inputEnd);
         break;
 
       case 4:
-        setTextStart(template["4"].InputStart);
-        setTextMiddle(template["4"].InputMiddle);
-        setTextEnd(template["4"].InputEnd);
+        setTextStart(template["4"].inputStart);
+        setTextMiddle(template["4"].inputMiddle);
+        setTextEnd(template["4"].inputEnd);
         break;
       case 5:
-        setTextStart(template["5"].InputStart);
-        setTextMiddle(template["5"].InputMiddle);
-        setTextEnd(template["5"].InputEnd);
+        setTextStart(template["5"].inputStart);
+        setTextMiddle(template["5"].inputMiddle);
+        setTextEnd(template["5"].inputEnd);
         break;
       default:
         alert("불가능한 설정입니다.");
@@ -79,21 +78,21 @@ const Template = () => {
     if (templateTemplatesuccess) {
       switch (optionSelected) {
         case 1:
-          setTextOut(template["1"].Output);
+          setTextOut(template["1"].output);
           break;
         case 2:
-          setTextOut(template["2"].Output);
+          setTextOut(template["2"].output);
           break;
 
         case 3:
-          setTextOut(template["3"].Output);
+          setTextOut(template["3"].output);
           break;
 
         case 4:
-          setTextOut(template["4"].Output);
+          setTextOut(template["4"].output);
           break;
         case 5:
-          setTextOut(template["5"].Output);
+          setTextOut(template["5"].output);
           break;
         default:
           alert("불가능한 설정입니다.");
@@ -104,7 +103,6 @@ const Template = () => {
 
   const onSubmit = useCallback(() => {
     console.log("submit");
-    // console.log(text);
     if (
       textStart.trim("") === "" &&
       textMiddle.trim("") === "" &&

@@ -1,7 +1,5 @@
 import axios from "axios";
-
 import { all, takeLatest, fork, put, call } from "redux-saga/effects";
-import faker from "faker";
 import {
   LOAD_TRANSLATE_SIMPLE_REQUEST,
   LOAD_TRANSLATE_SIMPLE_SUCCESS,
@@ -49,9 +47,9 @@ function* translateSimple(action) {
   try {
     yield put({
       type: TRANSLATE_SIMPLE_SUCCESS,
-      Output: result.data.response.output,
-      Input: action.data.content,
-      id: faker.random.number(),
+      output: result.data.response.output,
+      input: result.data.response.iutput,
+      id: result.data.response.id,
     });
   } catch (error) {
     console.log("fails");
@@ -75,10 +73,8 @@ function* translateTemplate(action) {
   try {
     yield put({
       type: TRANSLATE_TEMPLATE_SUCCESS,
-      Output: result.data.response.output,
-      Input: action.data,
-      Prams: action.value,
-      id: faker.random.number(),
+      id: result.data.response.id,
+      output: result.data.response.output,
       option: action.value,
     });
   } catch (error) {
