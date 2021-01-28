@@ -11,20 +11,23 @@ import {
   SEND_EMAIL_SUCCESS,
   SEND_EMAIL_FAILURE,
 } from "../reducers/user";
+import { LOAD_TRANSLATE_SIMPLE_REQUEST } from "../reducers/translate";
 
 function loginAPI(data) {
-  console.log(data);
   return axios.post("/login", data);
 }
 
 function* login(action) {
-  const result = yield call(loginAPI, action.data);
+  const result = yield call(loginAPI, action.data, { withCredentials: true });
   console.log(result);
 
   try {
     yield put({
       type: LOGIN_SUCCESS,
       data: result.data,
+    });
+    yield put({
+      type: LOAD_TRANSLATE_SIMPLE_REQUEST,
     });
   } catch (error) {
     yield put({
@@ -43,6 +46,8 @@ function logoutAPI(data) {
 }
 
 function* logout(action) {
+  console.log("쿠키!!  ", document.cookie);
+
   const result = yield call(logoutAPI, action.id);
 
   try {

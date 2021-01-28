@@ -3,16 +3,17 @@ import { combineReducers } from "redux";
 import translate from "./translate";
 import user from "./user";
 
-const rootReducer = combineReducers({
-  index: (state = {}, action) => {
-    switch (action.type) {
-      case HYDRATE:
-        return { ...state, ...action.payload };
-      default:
-        return state;
+const rootReducer = (state, action) => {
+  switch (action.type) {
+    case HYDRATE:
+      return action.payload;
+    default: {
+      const combineReducer = combineReducers({
+        user,
+        translate,
+      });
+      return combineReducer(state, action);
     }
-  },
-  translate,
-  user,
-});
+  }
+};
 export default rootReducer;

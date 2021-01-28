@@ -1,4 +1,8 @@
 export const init = {
+  loadtranslateSimplerequest: false,
+  loadtranslateSimplesuccess: false,
+  loadtranslateSimplefailure: false,
+
   translateSimplerequest: false,
   translateSimplesuccess: false,
   translateSimplefailure: false,
@@ -46,6 +50,10 @@ export const init = {
   },
 };
 
+export const LOAD_TRANSLATE_SIMPLE_REQUEST = "LOAD_TRANSLATE_SIMPLE_REQUEST";
+export const LOAD_TRANSLATE_SIMPLE_SUCCESS = "LOAD_TRANSLATE_SIMPLE_SUCCESS";
+export const LOAD_TRANSLATE_SIMPLE_FAILURE = "LOAD_TRANSLATE_SIMPLE_FAILURE";
+
 export const TRANSLATE_SIMPLE_REQUEST = "TRANSLATE_SIMPLE_REQUEST";
 export const TRANSLATE_SIMPLE_SUCCESS = "TRANSLATE_SIMPLE_SUCCESS";
 export const TRANSLATE_SIMPLE_FAILURE = "TRANSLATE_SIMPLE_FAILURE";
@@ -60,6 +68,31 @@ export const REMOVE_SIMPLE_FAILURE = "REMOVE_SIMPLE_FAILURE";
 
 export default (state = init, action) => {
   switch (action.type) {
+    case LOAD_TRANSLATE_SIMPLE_REQUEST: {
+      return {
+        ...state,
+        loadtranslateSimplerequest: true,
+        loadtranslateSimplesuccess: false,
+        loadtranslateSimplefailure: false,
+      };
+    }
+    case LOAD_TRANSLATE_SIMPLE_SUCCESS: {
+      return {
+        ...state,
+        loadtranslateSimplerequest: false,
+        loadtranslateSimplesuccess: true,
+        loadtranslateSimplefailure: false,
+        simple: action.data,
+      };
+    }
+    case LOAD_TRANSLATE_SIMPLE_FAILURE: {
+      return {
+        ...state,
+        loadtranslateSimplerequest: false,
+        loadtranslateSimplesuccess: false,
+        loadtranslateSimplefailure: action.error,
+      };
+    }
     case TRANSLATE_SIMPLE_REQUEST: {
       return {
         ...state,

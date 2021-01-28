@@ -3,6 +3,9 @@ import axios from "axios";
 import { all, takeLatest, fork, put, call } from "redux-saga/effects";
 import faker from "faker";
 import {
+  LOAD_TRANSLATE_SIMPLE_REQUEST,
+  LOAD_TRANSLATE_SIMPLE_SUCCESS,
+  LOAD_TRANSLATE_SIMPLE_FAILURE,
   TRANSLATE_SIMPLE_REQUEST,
   TRANSLATE_SIMPLE_SUCCESS,
   TRANSLATE_SIMPLE_FAILURE,
@@ -11,6 +14,31 @@ import {
   TRANSLATE_TEMPLATE_FAILURE,
 } from "../reducers/translate";
 
+function loadtranslateSimpleAPI(data) {
+  return axios.post("/history", data);
+}
+
+function* loadTranslateSimple(action) {
+  console.log("load_history");
+  const result = yield call(loadtranslateSimpleAPI, action.data);
+  console.log(result);
+  try {
+    yield put({
+      type: LOAD_TRANSLATE_SIMPLE_SUCCESS,
+      data: result.data.response.result,
+    });
+  } catch (error) {
+    console.log("fails");
+    yield put({
+      type: LOAD_TRANSLATE_SIMPLE_FAILURE,
+      error: result.data.error,
+    });
+  }
+}
+
+function* watchLoadTranslateSimple() {
+  yield takeLatest(LOAD_TRANSLATE_SIMPLE_REQUEST, loadTranslateSimple);
+}
 function translateSimpleAPI(data) {
   return axios.post("/extractverbphrase", data);
 }
@@ -69,5 +97,9 @@ function* watchTranslateTemplate() {
 
 export default function* translateSaga() {
   console.log("watch SagaTranslate");
-  yield all([fork(watchTranslateSimple), fork(watchTranslateTemplate)]);
+  yield all([
+    fork(watchLoadTranslateSimple),
+    fork(watchTranslateSimple),
+    fork(watchTranslateTemplate),
+  ]);
 }
