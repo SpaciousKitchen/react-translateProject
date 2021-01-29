@@ -10,7 +10,7 @@ const History = ({ onItemClick }) => {
 
   const onClickRemove = useCallback(
     (id) => () => {
-      dispatch({ type: REMOVE_SIMPLE_REQUEST, id });
+      dispatch({ type: REMOVE_SIMPLE_REQUEST, data: { id } });
     },
     [],
   );

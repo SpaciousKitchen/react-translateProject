@@ -10,6 +10,9 @@ import {
   TRANSLATE_TEMPLATE_REQUEST,
   TRANSLATE_TEMPLATE_SUCCESS,
   TRANSLATE_TEMPLATE_FAILURE,
+  REMOVE_SIMPLE_REQUEST,
+  REMOVE_SIMPLE_SUCCESS,
+  REMOVE_SIMPLE_FAILURE,
 } from "../reducers/translate";
 
 function loadtranslateSimpleAPI(data) {
@@ -63,6 +66,7 @@ function* translateSimple(action) {
 function* watchTranslateSimple() {
   yield takeLatest(TRANSLATE_SIMPLE_REQUEST, translateSimple);
 }
+
 function translateTemplateAPI(data) {
   return axios.post("/extractverbphrase", data);
 }
@@ -91,10 +95,36 @@ function* watchTranslateTemplate() {
   yield takeLatest(TRANSLATE_TEMPLATE_REQUEST, translateTemplate);
 }
 
+function removeSimpleAPI(data) {
+  return axios.post("/delhistory", data.id);
+}
+
+function* removeSimple(action) {
+  const result = yield call(removeSimpleAPI, action.data);
+
+  try {
+    yield put({
+      type: REMOVE_SIMPLE_SUCCESS,
+      id: result.data.response.id,
+    });
+  } catch (error) {
+    console.log("fails");
+
+    yield put({
+      type: REMOVE_SIMPLE_FAILURE,
+      error: result.data.error,
+    });
+  }
+}
+
+function* watchRemoveSimple() {
+  yield takeLatest(REMOVE_SIMPLE_REQUEST, removeSimple);
+}
+
 export default function* translateSaga() {
-  console.log("watch SagaTranslate");
   yield all([
     fork(watchLoadTranslateSimple),
+    fork(watchRemoveSimple),
     fork(watchTranslateSimple),
     fork(watchTranslateTemplate),
   ]);

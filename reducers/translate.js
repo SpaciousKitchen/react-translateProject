@@ -25,6 +25,10 @@ export const init = {
   translateSimplesuccess: false,
   translateSimplefailure: false,
 
+  removeSimplerequest: false,
+  removeSimplesuccess: false,
+  removeSimplefailure: false,
+
   translateTemplaterequest: false,
   translateTemplatesuccess: false,
   translateTemplatefailure: false,
@@ -199,9 +203,27 @@ export default (state = init, action) => {
     }
     case REMOVE_SIMPLE_REQUEST: {
       state.simple.shift((v) => v.id !== action.id);
-
       return {
         ...state,
+        removeSimplerequest: true,
+        removeSimplesuccess: false,
+        removeSimplefailure: false,
+      };
+    }
+    case REMOVE_SIMPLE_SUCCESS: {
+      return {
+        ...state,
+        removeSimplerequest: false,
+        removeSimplesuccess: true,
+        removeSimplefailure: false,
+      };
+    }
+    case REMOVE_SIMPLE_FAILURE: {
+      return {
+        ...state,
+        removeSimplerequest: false,
+        removeSimplesuccess: false,
+        removeSimplefailure: action.error,
       };
     }
 
