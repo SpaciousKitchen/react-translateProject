@@ -202,7 +202,6 @@ export default (state = init, action) => {
       };
     }
     case REMOVE_SIMPLE_REQUEST: {
-      state.simple.shift((v) => v.id !== action.id);
       return {
         ...state,
         removeSimplerequest: true,
@@ -211,6 +210,7 @@ export default (state = init, action) => {
       };
     }
     case REMOVE_SIMPLE_SUCCESS: {
+      state.simple.shift((v) => v.id !== action.id);
       return {
         ...state,
         removeSimplerequest: false,
