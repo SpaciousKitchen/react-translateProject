@@ -41,8 +41,6 @@ const Login = () => {
         )}
         onSuccess={responseSuccessGoogle}
         onFailure={responseFailGoogle}
-        cookiePolicy="single_host_origin"
-        isSignedIn
       />
     </>
   );

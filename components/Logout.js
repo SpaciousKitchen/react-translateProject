@@ -26,8 +26,7 @@ const Logout = ({ setvisible }) => {
     setclickMail(false);
   }, [clickMail]);
 
-  const logoutGoogle = () => {
-    // console.log('logout');
+  const responseSuccessGoogle = () => {
     dispatch({ type: LOGOUT_REQUEST, id: user });
   };
 
@@ -45,7 +44,7 @@ const Logout = ({ setvisible }) => {
             disabled={renderProps.disabled}
           />
         )}
-        onLogoutSuccess={logoutGoogle}
+        onLogoutSuccess={responseSuccessGoogle}
       />
       {clickMail && (
         <SendMail

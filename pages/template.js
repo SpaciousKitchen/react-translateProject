@@ -6,7 +6,10 @@ import axios from "axios";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import wrapper from "../store/configureStore";
 import AppLayout from "../components/AppLayout";
-import { TRANSLATE_TEMPLATE_REQUEST } from "../reducers/translate";
+import {
+  TRANSLATE_TEMPLATE_REQUEST,
+  LOAD_TRANSLATE_SIMPLE_REQUEST,
+} from "../reducers/translate";
 import { LOAD_USERINFO_REQUEST } from "../reducers/user";
 import { TemplateCol, TemplateContainer } from "../components/src/style";
 
@@ -323,19 +326,20 @@ const Template = () => {
     </AppLayout>
   );
 };
-
 export const getServerSideProps = wrapper.getServerSideProps(
   async (context) => {
     console.log("getServerSideProps start");
-    console.log(context.req.headers.cookie);
     const cookie = context.req ? context.req.headers.cookie : "";
+
     axios.defaults.headers.Cookie = "";
-    if (context.req && cookie) {
+    if (context.req && cookie.indexOf("session") !== -1) {
       axios.defaults.headers.Cookie = cookie;
       context.store.dispatch({
         type: LOAD_USERINFO_REQUEST,
       });
-
+      context.store.dispatch({
+        type: LOAD_TRANSLATE_SIMPLE_REQUEST,
+      });
       context.store.dispatch(END);
       await context.store.sagaTask.toPromise();
     }
