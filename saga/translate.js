@@ -26,7 +26,7 @@ function* loadTranslateSimple(action) {
   try {
     yield put({
       type: LOAD_TRANSLATE_SIMPLE_SUCCESS,
-      data: result.data.response.result,
+      data: result.data.response,
     });
   } catch (error) {
     console.log("fails");
@@ -46,13 +46,11 @@ function translateSimpleAPI(data) {
 
 function* translateSimple(action) {
   const result = yield call(translateSimpleAPI, action.data);
-  console.log(result);
+  console.log(result.response);
   try {
     yield put({
       type: TRANSLATE_SIMPLE_SUCCESS,
-      output: result.data.response.output,
-      input: result.data.response.iutput,
-      id: result.data.response.id,
+      data: result.data.response,
     });
   } catch (error) {
     console.log("fails");

@@ -130,11 +130,7 @@ export default (state = init, action) => {
         translateSimplerequest: false,
         translateSimplesuccess: true,
         translateSimplefailure: false,
-
-        simple: [
-          { id: action.id, input: action.input, output: action.output },
-          ...state.simple,
-        ],
+        simple: [action.data, ...state.simple],
       };
     }
     case TRANSLATE_SIMPLE_FAILURE: {

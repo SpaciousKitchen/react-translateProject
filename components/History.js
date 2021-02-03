@@ -7,7 +7,6 @@ const History = ({ onItemClick }) => {
   const { simple } = useSelector((state) => state.translate);
 
   const dispatch = useDispatch("");
-
   const onClickRemove = useCallback(
     (id) => () => {
       dispatch({ type: REMOVE_SIMPLE_REQUEST, data: { id } });
@@ -38,10 +37,10 @@ const History = ({ onItemClick }) => {
               tabIndex={index}
               role="button"
               style={{ flexGrow: "2" }}
-              onKeyPress={onItemClick(v.Input, v.Output)}
-              onClick={onItemClick(v.Input, v.Output)}
+              onKeyPress={onItemClick(v.input, v.output)}
+              onClick={onItemClick(v.input, v.output)}
             >
-              <span style={{ fontSize: "15px" }}>{v.Input}</span>
+              <span style={{ fontSize: "15px" }}>{v.input}</span>
             </div>
             <Button
               style={{ zIndex: 1000 }}
