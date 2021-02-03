@@ -104,7 +104,7 @@ function* removeSimple(action) {
   try {
     yield put({
       type: REMOVE_SIMPLE_SUCCESS,
-      id: result.data.response.id,
+      historyid: result.data.response.historyid,
     });
   } catch (error) {
     console.log("fails");

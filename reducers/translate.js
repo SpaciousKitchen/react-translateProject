@@ -206,12 +206,16 @@ export default (state = init, action) => {
       };
     }
     case REMOVE_SIMPLE_SUCCESS: {
-      state.simple.shift((v) => v.id !== action.id);
+      const simNew = state.simple.filter(
+        (v) => v.historyid !== action.historyid,
+      );
+
       return {
         ...state,
         removeSimplerequest: false,
         removeSimplesuccess: true,
         removeSimplefailure: false,
+        simple: simNew,
       };
     }
     case REMOVE_SIMPLE_FAILURE: {
