@@ -94,7 +94,8 @@ function* watchTranslateTemplate() {
 }
 
 function removeSimpleAPI(data) {
-  return axios.post("/delhistory", data.id);
+  console.log(data);
+  return axios.post("/delhistory", data);
 }
 
 function* removeSimple(action) {

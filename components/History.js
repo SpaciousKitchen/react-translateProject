@@ -8,8 +8,8 @@ const History = ({ onItemClick }) => {
 
   const dispatch = useDispatch("");
   const onClickRemove = useCallback(
-    (id) => () => {
-      dispatch({ type: REMOVE_SIMPLE_REQUEST, data: { id } });
+    (historyid) => () => {
+      dispatch({ type: REMOVE_SIMPLE_REQUEST, data: { historyid } });
     },
     [],
   );
@@ -45,7 +45,7 @@ const History = ({ onItemClick }) => {
             <Button
               style={{ zIndex: 1000 }}
               icon="trash alternate outline"
-              onClick={onClickRemove(v.id)}
+              onClick={onClickRemove(v.historyid)}
             />
           </List.Item>
         ))}
