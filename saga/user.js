@@ -22,7 +22,6 @@ function loadUserInfoAPI() {
 
 function* loadUserInfo() {
   const result = yield call(loadUserInfoAPI);
-  console.log(result);
 
   try {
     yield put({
@@ -50,7 +49,6 @@ function loginAPI(data) {
 
 function* login(action) {
   const result = yield call(loginAPI, action.data, { withCredentials: true });
-  console.log(result);
 
   try {
     yield put({
@@ -77,8 +75,6 @@ function logoutAPI(data) {
 }
 
 function* logout(action) {
-  console.log("쿠키!!  ", document.cookie);
-
   const result = yield call(logoutAPI, action.id);
 
   try {
@@ -103,9 +99,8 @@ function sendEmailAPI(data) {
 
 function* sendEmail(action) {
   const result = yield call(sendEmailAPI, action.data);
-  console.log(result);
+
   if (result.data.error) {
-    console.log("erorr다!!");
     yield put({
       type: SEND_EMAIL_FAILURE,
       error: result.data.error,
@@ -118,7 +113,6 @@ function* sendEmail(action) {
       type: SEND_EMAIL_SUCCESS,
     });
   } catch (error) {
-    console.log("fails");
     yield put({
       type: SEND_EMAIL_FAILURE,
       error: result.data.error,

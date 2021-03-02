@@ -20,16 +20,14 @@ function loadtranslateSimpleAPI(data) {
 }
 
 function* loadTranslateSimple(action) {
-  console.log("load_history");
   const result = yield call(loadtranslateSimpleAPI, action.data);
-  console.log(result);
+
   try {
     yield put({
       type: LOAD_TRANSLATE_SIMPLE_SUCCESS,
       data: result.data.response,
     });
   } catch (error) {
-    console.log("fails");
     yield put({
       type: LOAD_TRANSLATE_SIMPLE_FAILURE,
       error: result.data.error,
@@ -46,14 +44,12 @@ function translateSimpleAPI(data) {
 
 function* translateSimple(action) {
   const result = yield call(translateSimpleAPI, action.data);
-  console.log(result.response);
   try {
     yield put({
       type: TRANSLATE_SIMPLE_SUCCESS,
       data: result.data.response,
     });
   } catch (error) {
-    console.log("fails");
     yield put({
       type: TRANSLATE_SIMPLE_FAILURE,
       error: result.data.error,
@@ -80,8 +76,6 @@ function* translateTemplate(action) {
       option: action.value,
     });
   } catch (error) {
-    console.log("fails");
-
     yield put({
       type: TRANSLATE_TEMPLATE_FAILURE,
       error: result.data.error,
@@ -94,7 +88,6 @@ function* watchTranslateTemplate() {
 }
 
 function removeSimpleAPI(data) {
-  console.log(data);
   return axios.post("/delhistory", data);
 }
 
@@ -107,8 +100,6 @@ function* removeSimple(action) {
       historyid: result.data.response.historyid,
     });
   } catch (error) {
-    console.log("fails");
-
     yield put({
       type: REMOVE_SIMPLE_FAILURE,
       error: result.data.error,

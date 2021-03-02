@@ -164,7 +164,6 @@ const Main = memo(() => {
 
 export const getServerSideProps = wrapper.getServerSideProps(
   async (context) => {
-    console.log("getServerSideProps start");
     const cookie = context.req.headers.cookie ? context.req.headers.cookie : "";
     axios.defaults.headers.Cookie = "";
     if (context.req && cookie.indexOf("session") !== -1) {
@@ -178,8 +177,6 @@ export const getServerSideProps = wrapper.getServerSideProps(
       context.store.dispatch(END);
       await context.store.sagaTask.toPromise();
     }
-
-    console.log("getServerSideProps end");
   },
 );
 

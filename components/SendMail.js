@@ -33,8 +33,6 @@ const SendMail = ({ onClickClosed }) => {
         emailContent: content,
       },
     });
-
-    // console.log(text);
   }, [email, subject, content]);
 
   return (
