@@ -4,7 +4,7 @@
 
 #### 기술 스택
 
-![Generic badge](https://img.shields.io/badge/React-17.0.1-blue.svg) ![Generic badge](https://img.shields.io/badge/next-10.0.5-brightgreen.svg) ![Generic badge](https://img.shields.io/badge/redux-4.0.5-yellowgreen.svg) ![Generic badge](https://img.shields.io/badge/styled-components-5.2.1-orange.svg)
+![Generic badge](https://img.shields.io/badge/React-17.0.1-blue.svg) ![Generic badge](https://img.shields.io/badge/next-10.0.5-brightgreen.svg) ![Generic badge](https://img.shields.io/badge/redux-4.0.5-yellowgreen.svg) ![Generic badge](https://img.shields.io/badge/styled-components-5.2.1-ff69b4.svg)
 
 
 
@@ -12,7 +12,8 @@
 
 #### 시연영상
 
-​      <img src="./img/시연영상.gif" width="700" height="500">
+
+<img src="./img/시연영상.gif" width="700" height="500">
 
   
 
