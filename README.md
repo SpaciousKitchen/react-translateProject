@@ -13,7 +13,7 @@
 #### 시연영상
 
 
-<img src="img/시연영상.gif" width="700%" height="500%">
+<img src="img/시연영상.gif" width="400%" >
 
   
 
