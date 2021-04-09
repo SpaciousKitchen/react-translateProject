@@ -16,9 +16,10 @@
 
 <img src="img/시연영상1.gif" width="400%" >
 
+
 - 복사 ,메일 전송 ,로그아웃
 
-<img src="img/시연영상2.gif" width="400%" >
+<img src="img/시연영상2.gif" width="400%" >
 
 
 
