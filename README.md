@@ -1,26 +1,53 @@
 #### 반말/존댓말 번역 및 템플릿 번역 서비스
 
+
+
+#### 기술 스택
+
+![Generic badge](https://img.shields.io/badge/React-17.0.1-blue.svg) ![Generic badge](https://img.shields.io/badge/next-10.0.5-brightgreen.svg) ![Generic badge](https://img.shields.io/badge/redux-4.0.5-yellowgreen.svg) ![Generic badge](https://img.shields.io/badge/styled-components-5.2.1-orange.svg)
+
+
+
+
+
+#### 시연영상
+
+​      <img src="./img/시연영상.gif" width="700" height="500">
+
+  
+
 #### 기능
+
 1. 로그인 기능(Google 로그인)
-    - [X] 구글 로그인 구현
+   - [x] 구글 로그인 ,로그아웃 구현
+
+
 
 2. 반말 -> 존말 번역 
-    - [X] 인풋 아웃풋 UI
-    - [X] 인풋 초기화
-    - [X] 아웃풋 복사
-    - [X] 번역 
+
+   - [x] 인풋 아웃풋 UI
+
+   - [x] 인풋 초기화 기능
+
+   - [x] 아웃풋 복사기능
+
+   - [x] 번역 기능
+
+     
+
 3. 번역 내역 히스토리
-    - [X] 번역 내역 다시 보기
-    - [X] 번역 내역 삭제
+   - [x] 회원가입 유저  번역 히스토리 로드[DB에서 불러오기 ,서버사이드 렌더링]
+   - [x] 번역 내역 삭제
 
 4. 템플릿 
-    - [X] 템플릿 전용 인풋 아웃풋
-    - [X] 인풋 초기화
-    - [X] 아웃풋 복사
-    - [X] 번역 기능
+   - [x] 템플릿 전용 인풋 아웃풋
+   - [x] 인풋 초기화 기능
+   - [x] 아웃풋 기능
+   - [x] 번역 기능
+
+​    
 
 5. 메일 서비스 (SMTP 통신)
-    - [X] 메일 전송 UI
-    - [X] 전송 완료 UI
-    - [X] 전송 실패 UI
-
+   - [x] 메일 전송 UI
+   - [x] 전송 완료 Modal
+   - [x] 전송 실패 에러 처리 
